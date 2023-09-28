@@ -123,3 +123,20 @@ https://www.gnu.org/licenses/gpl-3.0.html
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "
 AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
 language governing permissions and limitations under the License.
+
+## 开始使用
+### 获取private token
+```python
+python manage.py shell
+from users.models import User
+u = User.objects.get(username='admin')
+u.create_private_token()
+```
+### 使用方法
+```shell
+curl --location 'demo.jump.com/api/v1/users/groups/' \
+--header 'Authorization: Token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxe' \
+--header 'Content-Type: application/json' \
+--header 'X-JMS-ORG: 00000000-0000-0000-0000-000000000002' \
+--header 'Cookie: SESSION_COOKIE_NAME_PREFIX=jms_'
+```
